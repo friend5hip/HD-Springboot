@@ -8,9 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	out.println("model test입니다.");
-%>
-name은 ${name}입니다.
+	${id} / ${name}
 </body>
 </html>

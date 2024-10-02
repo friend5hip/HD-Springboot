@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +36,6 @@ public class MyController {
 		model.addAttribute("name", "홍길동");
 		return "model";
 	}
-	
 	
 	@RequestMapping("/mv")
 	public ModelAndView mv2() {
@@ -87,6 +87,19 @@ public class MyController {
 		model.addAttribute("name", member.getName());
 		
 		return "view1";
+	}
+	
+	@RequestMapping("/view3/{studentId}/{name}")
+	public String view3(
+			@PathVariable("studentId") String studentId, 
+			@PathVariable("name") String name,
+			Model model
+			) {
+		
+		model.addAttribute("id", studentId);
+		model.addAttribute("name", name);
+		
+		return "view3";
 	}
 	
 }
