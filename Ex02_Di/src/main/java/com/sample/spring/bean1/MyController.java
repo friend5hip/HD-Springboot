@@ -23,8 +23,8 @@ public class MyController {
 	public @ResponseBody String root() {
 		member1.print();
 		member1.setPrinter(printer);
-		member1.setName("홍길동");
-		member2.setNickname("도사");
+		member1.setName("전우정");
+		member2.setNickname("하이");
 		member1.print();
 		
 		return "annotation";

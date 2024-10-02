@@ -39,9 +39,6 @@ public class Member {
 	
 	public void print() {
 		printer.print("hello" + name + " : " + nickname);
-	}
-	
-	
-	
+	}	
 	
 }
