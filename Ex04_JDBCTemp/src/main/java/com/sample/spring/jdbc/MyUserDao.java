@@ -13,7 +13,7 @@ public class MyUserDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public List<MyUserDto> list() {
+	public List<MyUserDto> getList() {
 		String query = "select * from myuser";
 		List<MyUserDto> list = jdbcTemplate.query(query, 
 				new BeanPropertyRowMapper<>(MyUserDto.class)

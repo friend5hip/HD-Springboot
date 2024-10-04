@@ -20,7 +20,7 @@ public class MyController {
 	
 	@RequestMapping("/userlist")
 	public String userListPage(Model model) {
-		model.addAttribute("users", dao.list());
+		model.addAttribute("users", dao.getList());
 		return "userlist";
 	}
 
