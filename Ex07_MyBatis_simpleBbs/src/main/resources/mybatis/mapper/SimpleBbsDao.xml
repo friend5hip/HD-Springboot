@@ -3,6 +3,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sample.spring.dao.ISimpleBbsDao">
 	<select id="listDao" resultType="com.sample.spring.dto.SimpleBbsDto">
-	SELECT * from simple_bbs order by id asc
+	SELECT * FROM simple_bbs ORDER BY id ASC
 	</select>
+	<select id="viewDao" resultType="com.sample.spring.dto.SimpleBbsDto">
+	<!-- #{0} or #{param1} or @Param(id) && #(id) -->
+	SELECT * FROM simple_bbs WHERE id = #{0}
+	</select>
+	<select id="countDao" resultType="int">
+	SELECT COUNT(*) FROM simple_bbs
+	</select>
+	<insert id="writeDao">
+	INSERT INTO simple_bbs (writer, title, content) VALUES (#{param1}, #{param2}, #{param3})
+	</insert>
+	<delete id="deleteDao">
+	DELETE FROM simple_bbs WHERE id = #{id}
+	</delete>
 </mapper>

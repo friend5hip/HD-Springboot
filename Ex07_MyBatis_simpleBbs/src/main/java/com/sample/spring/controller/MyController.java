@@ -27,30 +27,30 @@ public class MyController {
 		return "list";
 	}
 	
-//	@RequestMapping("/view")	// view?id=1
-//	public String viewPage(HttpServletRequest request, Model model) {
-//		String sId = request.getParameter("id");
-//		model.addAttribute("dto", dao.viewDao(sId));
-//		return "view";
-//	}
-//	
-//	@RequestMapping("/writeForm")
-//	public String writePage() {
-//		return "writeForm";
-//	}
-//	
-//	@RequestMapping("/write")
-//	public String write(HttpServletRequest request) {
-//		dao.writeDao(
-//				request.getParameter("writer"),
-//				request.getParameter("title"),
-//				request.getParameter("content"));
-//		return "redirect:list";
-//	}
-//	
-//	@RequestMapping("/delete")	// delete?id=1
-//	public String deletePage(HttpServletRequest request) {
-//		dao.deleteDao(request.getParameter("id"));
-//		return "redirect:list";
-//	}
+	@RequestMapping("/view")	// view?id=1
+	public String viewPage(HttpServletRequest request, Model model) {
+		String sId = request.getParameter("id");
+		model.addAttribute("dto", dao.viewDao(sId));
+		return "view";
+	}
+	
+	@RequestMapping("/writeForm")
+	public String writePage() {
+		return "writeForm";
+	}
+	
+	@RequestMapping("/write")
+	public String write(HttpServletRequest request) {
+		dao.writeDao(
+				request.getParameter("writer"),
+				request.getParameter("title"),
+				request.getParameter("content"));
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/delete")	// delete?id=1
+	public String deletePage(HttpServletRequest request) {
+		dao.deleteDao(request.getParameter("id"));
+		return "redirect:list";
+	}
 }
