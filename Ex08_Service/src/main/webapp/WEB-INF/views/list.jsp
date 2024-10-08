@@ -25,6 +25,6 @@
     <tr>
     </c:forEach>
 </table>
-<p><a href="writeForm">글쓰기</a></p>
+<p><a href="writeForm">글 쓰기</a></p>
 </body>
 </html>
