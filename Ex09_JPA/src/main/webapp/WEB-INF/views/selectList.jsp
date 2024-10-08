@@ -12,7 +12,7 @@
 	총 페이지 수: ${totalPages}<br>
 	사이즈: ${size}<br>
 	페이지 번호: ${pageNumber}<br>
-	content의 개수: ${numberOfElements}<br>
+	보여지는 content 수: ${numberOfElements}<br>
 	<hr>
 	<c:forEach var="member" items="${members}">
 		${member.id} | ${member.name} | ${member.email}

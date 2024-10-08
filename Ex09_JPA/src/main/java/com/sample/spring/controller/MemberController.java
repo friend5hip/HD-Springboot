@@ -59,7 +59,7 @@ public class MemberController {
 		if (result.isPresent()) 
 			model.addAttribute("member", result.get());
 		else
-			System.out.println("ERROR");
+			System.out.println("Error: result doesn't exist.");
 		return "view";
 	}
 	
@@ -77,7 +77,7 @@ public class MemberController {
 			@RequestParam("page") String page,
 			Model model) {
 		
-		System.out.println("검색 결과: " + search);
+		System.out.println("검색 키워드: " + search);
 		System.out.println("페이지: " + page);
 		
 		String name = search + "%";
