@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member List</title>
+<title>DELETE</title>
 </head>
 <body>
-	<c:forEach var="member" items="${members}">
-		${member.id}<br>${member.name}<br>${member.email}
-		<hr>
-	</c:forEach>
+	멤버 삭제 완료<br>
+	${member.id}<br>
+	${member.name}<br>
+	${member.email}<br>
+	${member.createDate}
 </body>
 </html>

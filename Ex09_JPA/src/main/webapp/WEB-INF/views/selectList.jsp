@@ -8,8 +8,14 @@
 <title>Member List</title>
 </head>
 <body>
+	총 멤버 수: ${totalElements}<br>
+	총 페이지 수: ${totalPages}<br>
+	사이즈: ${size}<br>
+	페이지 번호: ${pageNumber}<br>
+	content의 개수: ${numberOfElements}<br>
+	<hr>
 	<c:forEach var="member" items="${members}">
-		${member.id}<br>${member.name}<br>${member.email}
+		${member.id} | ${member.name} | ${member.email}
 		<hr>
 	</c:forEach>
 </body>
