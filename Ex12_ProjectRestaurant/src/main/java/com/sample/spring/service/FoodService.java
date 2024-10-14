@@ -19,10 +19,10 @@ import jakarta.transaction.Transactional;
 @Service
 public class FoodService {
 	@Autowired
-	private FoodRepository foodRepo;
+	private FoodRepository foodRepository;
 
 	@Autowired
-	private MenuRepository menuRepo;
+	private MenuRepository menuRepository;
 	
 	@Transactional
 	public FoodEntity createFood(
@@ -34,7 +34,7 @@ public class FoodService {
 				.createdAt(ZonedDateTime.now())
 				.updatedAt(ZonedDateTime.now())
 				.build();
-		foodRepo.save(food);
+		foodRepository.save(food);
 		
 		request.getMenus().forEach((menu) -> {
 			MenuEntity menuEntity = MenuEntity.builder()
@@ -44,7 +44,7 @@ public class FoodService {
 					.createdAt(ZonedDateTime.now())
 					.updatedAt(ZonedDateTime.now())
 					.build();
-			menuRepo.save(menuEntity);
+			menuRepository.save(menuEntity);
 		});
 		
 		return food;
@@ -56,14 +56,15 @@ public class FoodService {
 			CreateAndEditFoodRequest request
 			) {
 		// 인자 값 유무 확인
-		FoodEntity food = foodRepo.findById(foodId).orElseThrow(() -> new RuntimeException("Food doesn't exist."));
+		FoodEntity food = foodRepository.findById(foodId).orElseThrow(() -> new RuntimeException("Food doesn't exist."));
 		food.changeNameAndAddress(request.getName(), request.getAddress());
-		foodRepo.save(food);
-		// id에 해당하는 메뉴 삭제
-		List<MenuEntity> menus = menuRepo.findAllByFoodId(foodId);
-		menuRepo.deleteAll(menus);
+		foodRepository.save(food);
 		
-		// 메뉴 갱신
+		// id에 해당하는 메뉴를 삭제
+		List<MenuEntity> menus = menuRepository.findAllByFoodId(foodId);
+		menuRepository.deleteAll(menus);
+		
+		// 메뉴를 갱신
 		request.getMenus().forEach((menu) -> {
 			MenuEntity menuEntity = MenuEntity.builder()
 					.foodId(food.getId())
@@ -72,20 +73,20 @@ public class FoodService {
 					.createdAt(ZonedDateTime.now())
 					.updatedAt(ZonedDateTime.now())
 					.build();
-			menuRepo.save(menuEntity);
+			menuRepository.save(menuEntity);
 		});
 	}
 
 	public void deleteFood(Long foodId) {
-		FoodEntity food = foodRepo.findById(foodId).orElseThrow(() -> (new RuntimeException("Food doesn't exist.")));
-		foodRepo.delete(food);
+		FoodEntity food = foodRepository.findById(foodId).orElseThrow(() -> (new RuntimeException("Food doesn't exist.")));
+		foodRepository.delete(food);
 		
-		List<MenuEntity> menus = menuRepo.findAllByFoodId(foodId);
-		menuRepo.deleteAll(menus);
+		List<MenuEntity> menus = menuRepository.findAllByFoodId(foodId);
+		menuRepository.deleteAll(menus);
 	}
 	
 	public List<FoodView> getAllFoods() {
-		List<FoodEntity> foods = foodRepo.findAll();
+		List<FoodEntity> foods = foodRepository.findAll();
 		
 		return foods.stream().map((food) -> FoodView.builder()
 				.id(food.getId())
@@ -98,9 +99,9 @@ public class FoodService {
 	}
 	
 	public FoodDetailView getFoodDetail(Long foodId) {
-		FoodEntity food = foodRepo.findById(foodId).orElseThrow();
+		FoodEntity food = foodRepository.findById(foodId).orElseThrow();
 		
-		List<MenuEntity> menus = menuRepo.findAllByFoodId(foodId);
+		List<MenuEntity> menus = menuRepository.findAllByFoodId(foodId);
 		
 		return FoodDetailView.builder()
 				.id(food.getId())

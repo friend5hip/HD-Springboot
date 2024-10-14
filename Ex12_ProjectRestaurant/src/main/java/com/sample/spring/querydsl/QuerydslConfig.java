@@ -1,0 +1,19 @@
+package com.sample.spring.querydsl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
+import jakarta.persistence.EntityManager;
+
+public class QuerydslConfig {
+	
+	@Autowired
+	private EntityManager em;
+	
+	@Bean
+	public JPAQueryFactory queryFactory() {
+		return new JPAQueryFactory(em);
+	}
+}
