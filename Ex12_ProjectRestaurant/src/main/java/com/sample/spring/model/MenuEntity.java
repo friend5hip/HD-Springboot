@@ -23,10 +23,9 @@ public class MenuEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Long food_id;
+	private Long foodId;
 	private String name;
 	private Integer price;
-	
 	private ZonedDateTime createdAt;
 	private ZonedDateTime updatedAt;
 	
