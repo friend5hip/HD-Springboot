@@ -35,23 +35,23 @@ public class MemberRepositoryTest {
 //			member.addRole(MemberRole.USER);
 //			
 //			if (i > 5)
-//				member.addRole(MemberRole.ADMIN);
+//				member.addRole(MemberRole.MEMBER);
 //			
 //			if (i > 8) 
-//				member.addRole(MemberRole.MEMBER);
+//				member.addRole(MemberRole.ADMIN);
 //			
 //			memberRepository.save(member);
 //		}
 //	}
-	
-	@Test
-	public void testRead() {
-		String email = "user1@han.com";
-		Member member =memberRepository.getWithRole(email);
-		
-		log.info("#######################");
-		log.info(member);
-		log.info(member.getMemberRoleList());
-		
-	}
+//	
+//	@Test
+//	public void testRead() {
+//		String email = "user1@han.com";
+//		Member member =memberRepository.getWithRole(email);
+//		
+//		log.info("#######################");
+//		log.info(member);
+//		log.info(member.getMemberRoleList());
+//		
+//	}
 }

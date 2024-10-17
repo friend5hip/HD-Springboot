@@ -1,10 +1,14 @@
 package com.sample.spring.security;
 
+import java.util.stream.Collectors;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.sample.spring.domain.Member;
+import com.sample.spring.dto.MemberDTO;
 import com.sample.spring.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +24,25 @@ public class CustomUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("------------------- load username ------------------- " + username);
-		return null;
+		
+		Member member = memberRepository.getWithRole(username); // username = email
+		
+		if (member == null) {
+			throw new UsernameNotFoundException("Username Not Found.");
+		}
+		
+		MemberDTO memberDTO = new MemberDTO(
+				member.getEmail(),
+				member.getPw(),
+				member.getNickname(),
+				member.isSocial(),
+				member.getMemberRoleList()
+					.stream().map(memberRole -> memberRole.name()).collect(Collectors.toList())
+				);
+		
+		log.info(memberDTO);
+		
+		return memberDTO;
 	}
 	
 }
